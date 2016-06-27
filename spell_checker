@@ -1,0 +1,15 @@
+from pybloomfilter import BloomFilter
+
+input_file = open("mywords.txt", "r")
+#"mywords.txt" is a text document that contains most of the words in the english alphabet
+
+spell_checker = BloomFilter(400000, .001)
+for word in input_file:
+    spell_checker.add(word.strip())
+str = raw_input("Input a singular word: ")
+if spell_checker.__contains__(str) == True:
+    print "Correct spelling"
+elif spell_checker.__contains__(str.lower())==True:
+    print "Correct spelling"
+else:
+    print "Try a different spelling for " + str
